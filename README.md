@@ -22,12 +22,10 @@ control.clients
 ---------------
 
 Client APIs to access command and control services.
+There are at least three different implementations of the client API: a local client, a remote client,
+and a rate-limited wrapper. All clients implement a common interface.
 
-### Client interface
-
-All clients implement a common interface.
-
-#### Client.getControlData(project\_key)
+### getControlData(project\_key)
 
 Get control data for the given key.
 
@@ -35,7 +33,7 @@ Get control data for the given key.
 
 Returns a Promise containing the control data.
 
-#### Client.putControlData(project\_key, value)
+### putControlData(project\_key, value)
 
 Put control data for the given key.
 
@@ -44,7 +42,7 @@ Put control data for the given key.
 
 Returns a Promise containing undefined (or an exception).
 
-#### Client.getCounters(project\_key, counter\_key, n)
+### getCounters(project\_key, counter\_key, n)
 
 Get a counter. A counter is a small number (or range of numbers) that will be
 unique for any given project key.
@@ -61,20 +59,17 @@ Returns a Promise containing an object indicating the range of the counters retu
 For example, Client.getCounters('my-project', 'my-counter', 3) might return
 { from: 7, to: 10 }. This means that 7, 8, and 9 are all in the returned range.
 
-### control.clients.local
-#### control.clients.local.create()
+### control.clients.local.create()
 
 Create a client with its own local instance of the control service.
 
-### control.clients.remote
-#### control.clients.remote.create(endpoint)
+### control.clients.remote.create(endpoint)
 
 Create a client to connect to a remote service.
 
  * endpoint : string - the URL of the remote service.
 
-### control.clients.rate\_limited
-#### control.clients.rate\_limited.create(client, interval)
+### control.clients.rate\_limited.create(client, interval)
 
 Create a client that rate-limits requests to a control service.
 
