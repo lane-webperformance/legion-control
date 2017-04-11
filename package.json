@@ -1,0 +1,27 @@
+{
+  "name": "legion-control",
+  "version": "0.0.20",
+  "description": "Command and control services for legion instances.",
+  "main": "src/index.js",
+  "bin": "src/main.js",
+  "scripts": {
+    "start": "forever --spinSleepTime 250 --minUptime 1000 src/main.js",
+    "test": "eslint ./src/** ./spec/** && jasmine && istanbul cover jasmine",
+    "clean": "rimraf node_modules coverage"
+  },
+  "author": "Christopher Lane Hinson <lane@webperformance.com>",
+  "license": "APSL-2.0",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "forever": "^0.15.3",
+    "node-fetch": "^1.6.3",
+    "promise-delay": "^2.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.15.0",
+    "istanbul": "^0.4.5",
+    "jasmine": "^2.5.3",
+    "rimraf": "^2.5.4"
+  }
+}
