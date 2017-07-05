@@ -43,13 +43,13 @@ describe('The control client-server mechanism', function() {
     const results = [];
 
     client.putControlData('example-project', { control : { users : 50 } }).then(() => {
-      for( let i = 0; i < 100000; i++ )
+      for( let i = 0; i < 10000; i++ )
         results.push(client.getControlData('example-project'));
 
       return Promise.all(results);
     }).then(results => {
-      expect(results[50000]).toEqual({ control : { users : 50 } });
-      expect(results[0]).toBe(results[99999]);
+      expect(results[5000]).toEqual({ control : { users : 50 } });
+      expect(results[0]).toBe(results[9999]);
       expect(this.server_client.requests).toBe(2 /* one for putControlData + one for getControlData */);
     }).then(done).catch(done.fail);
   });
@@ -74,9 +74,9 @@ describe('The control client-server mechanism', function() {
       expect(results[0].to).not.toEqual(results[1].to);
       expect(results[0].to).not.toEqual(results[2].to);
       expect(results[1].to).not.toEqual(results[2].to);
-      expect(results[0].from).not.toEqual(results[1].to);
-      expect(results[0].from).not.toEqual(results[2].to);
-      expect(results[1].from).not.toEqual(results[2].to);
+      expect(results[0].from).not.toEqual(results[1].from);
+      expect(results[0].from).not.toEqual(results[2].from);
+      expect(results[1].from).not.toEqual(results[2].from);
 
       /* istanbul ignore next */
       expect(results[0].to === results[1].from || results[0].to === results[2].from || results[1].to === results[0].from || results[1].to === results[2].from).toBe(true);
