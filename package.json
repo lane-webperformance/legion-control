@@ -1,6 +1,6 @@
 {
   "name": "legion-control",
-  "version": "0.0.50",
+  "version": "0.0.51",
   "description": "Command and control services for legion instances.",
   "main": "src/index.js",
   "bin": "src/main.js",
