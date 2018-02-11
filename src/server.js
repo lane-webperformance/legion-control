@@ -58,7 +58,7 @@ module.exports.withClient = function(client) {
       const app = express();
 
       app.use(bodyParser.json({}))
-         .use(module.exports.control(client));
+        .use(module.exports.control(client));
 
       return app.listen.apply(app, arguments);
     }
